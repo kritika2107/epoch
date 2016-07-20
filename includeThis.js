@@ -6,7 +6,6 @@ var initialState={
 
 var store = Redux.createStore(reducerFunction,initialState)
 
-
 var Epoch = React.createClass({ //creates component Epoch
 
     render:function () { //returns html that has to be rendered
@@ -34,9 +33,11 @@ var Input=React.createClass({
 
         return(
             <div>
-
             Enter Epoch Time: <input type="text" value={store.getState().value} onChange={this.in}/>
-
+                <select name="unit" id="sel" >
+                    <option value={1}>Timestamp</option>
+                    <option value={1000}>MilliSeconds</option>
+                </select><br/>
         </div>
         )
     }
@@ -49,7 +50,7 @@ var Display=React.createClass({
 
 
     },
-    render:function () { //returns html that hs to be rendered
+    render:function () { //returns html that has to be rendered
 
 
         return(
@@ -68,16 +69,21 @@ function render() {
     ReactDOM.render(<Epoch store={store}/>, document.getElementById('app')); // what html to render in DOM and at which place
 }
 
-function reducerFunction(state, action) {
-    console.log("inside reducer"+action.type);
+function reducerFunction(state, action)
+{
+
     if (typeof state === 'undefined') {
         return initialState
     }
     switch (action.type) {
-        case "INPUT": state.value=action.value;
-            console.log('>> state.value', state.value)
+        case "INPUT":
+            state.value=action.value;
             return state
-        case "CONVERT": var time=parseInt(store.getState().value);
+
+        case "CONVERT":
+            var e = document.getElementById("sel");
+            var str = e.options[e.selectedIndex].value;// str stores the value provided in the option i.e. 1 or 1000
+            var time=parseInt((state.value)/str);
             var date = new Date(0);
             date.setUTCSeconds(time);
             state.date=date;
@@ -89,4 +95,3 @@ function reducerFunction(state, action) {
 
 render()
 store.subscribe(render);
-
