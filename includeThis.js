@@ -4,7 +4,7 @@ var initialState={
 
 }
 
-var store = Redux.createStore(reducerFunction,initialState)
+var store = Redux.createStore(reducerFunction,initialState,window.devToolsExtension && window.devToolsExtension())
 
 var Epoch = React.createClass({ //creates component Epoch
 
