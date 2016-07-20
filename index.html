@@ -6,47 +6,12 @@
     <script src="https://fb.me/react-15.2.0.js"></script>
     <script src="https://fb.me/react-dom-15.2.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://npmcdn.com/redux@latest/dist/redux.min.js"></script>
+    <script src="includeThis.js" type="text/babel"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div align="center" id="app">
 </div>
-<script type="text/babel">
-
-  var Epoch=React.createClass({
-
-            render:function () {
-
-          return(
-                  <div>
-                      <h1>Epoc Calculator</h1>
-                      Enter time: <input type="text" id="mSec"/>milliseconds
-                      <br/>
-                          <br/>
-                              TimeStamp to Human Date :
-                              <button onClick={this.epochToTime}>Convert</button>
-                              <p id= "showhere"></p>
-                      </div>
-          )
-
-      },
-      epochToTime: function () {
-
-          var time=parseInt(document.getElementById("mSec").value);
-          var date = new Date(0);
-          date.setUTCSeconds(time);
-          document.getElementById("showhere").innerHTML=date;
-      }
-
-
-  });
-    ReactDOM.render(<Epoch />,document.getElementById('app'));
-
-
-</script>
-
-
-
-
 </body>
